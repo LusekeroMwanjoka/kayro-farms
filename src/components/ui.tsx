@@ -38,9 +38,27 @@ export function ScreenHeader({ title, subtitle }: { title: string; subtitle?: st
         <Text style={s.h1}>{title}</Text>
         {subtitle ? <Text style={s.sub}>{subtitle}</Text> : null}
       </View>
-      <SyncChip />
     </View>
   );
+}
+
+export function SectionHeading({ title, action }: { title: string; action?: string }) {
+  return (
+    <View style={s.sectionHeading}>
+      <Text style={s.sectionTitle}>{title}</Text>
+      {action ? <Text style={s.sectionAction}>{action}</Text> : null}
+    </View>
+  );
+}
+
+export function StatusPill({ label, tone = 'green' }: { label: string; tone?: 'green' | 'amber' | 'red' | 'neutral' }) {
+  const tones = {
+    green: [colors.softGreen, colors.forest],
+    amber: [colors.softAmber, '#8A5B0B'],
+    red: [colors.softRed, colors.alert],
+    neutral: [colors.cream, colors.muted],
+  } as const;
+  return <Text style={[s.statusPill, { backgroundColor: tones[tone][0], color: tones[tone][1] }]}>{label}</Text>;
 }
 
 export function KpiCard({ label, value }: { label: string; value: string }) {
@@ -89,7 +107,7 @@ export function ComingSoon({ title, note }: { title: string; note: string }) {
 export function ActionTile({ icon, label, onPress }: { icon: IconName; label: string; onPress?: () => void }) {
   return (
     <Pressable style={({ pressed }) => [s.tile, pressed && { opacity: 0.7 }]} onPress={onPress} accessibilityRole="button">
-      <MaterialCommunityIcons name={icon} size={30} color={colors.forest} />
+      <View style={s.tileIcon}><MaterialCommunityIcons name={icon} size={22} color={colors.forest} /></View>
       <Text style={s.tileLabel}>{label}</Text>
     </Pressable>
   );
@@ -140,32 +158,28 @@ export function Button({
 }
 
 const s = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: colors.mist },
-  content: { padding: space.md, gap: space.md },
+  screen: { flex: 1, backgroundColor: colors.white },
+  content: { paddingHorizontal: 20, paddingTop: 14, paddingBottom: 28, gap: 18 },
   header: { flexDirection: 'row', alignItems: 'center', gap: space.sm },
-  h1: { fontSize: 26, fontWeight: '700', color: colors.forest },
+  h1: { fontSize: 25, fontWeight: '700', color: colors.charcoal, letterSpacing: -0.5 },
   sub: { fontSize: 14, color: colors.muted, marginTop: 2 },
-  chip: { paddingHorizontal: 12, paddingVertical: 6, borderRadius: 999 },
-  chipText: { color: colors.white, fontWeight: '600', fontSize: 12 },
+  chip: { paddingHorizontal: 10, paddingVertical: 6, borderRadius: 999, backgroundColor: colors.softGreen },
+  chipText: { color: colors.forest, fontWeight: '700', fontSize: 11 },
   row: { flexDirection: 'row', gap: space.sm },
   kpi: { flex: 1, backgroundColor: colors.white, borderRadius: radius.md, padding: space.md, borderWidth: 1, borderColor: colors.line },
   kpiLabel: { fontSize: 12, color: colors.muted },
   kpiValue: { fontSize: 18, fontWeight: '700', color: colors.charcoal, marginTop: 4 },
-  card: { backgroundColor: colors.white, borderRadius: radius.md, padding: space.md, gap: space.sm, borderWidth: 1, borderColor: colors.line },
+  card: { backgroundColor: colors.white, borderRadius: radius.lg, padding: space.md, gap: space.sm, borderWidth: 1, borderColor: colors.line },
   cardTitle: { fontSize: 16, fontWeight: '700', color: colors.charcoal },
   body: { fontSize: 15, color: colors.charcoal, lineHeight: 22 },
   grid: { flexDirection: 'row', flexWrap: 'wrap', gap: space.sm },
-  tile: {
-    width: '48%',
-    minHeight: 96,
-    backgroundColor: colors.cream,
-    borderRadius: radius.md,
-    padding: space.md,
-    justifyContent: 'space-between',
-    borderWidth: 1,
-    borderColor: colors.line,
-  },
+  tile: { width: '48%', minHeight: 104, backgroundColor: colors.white, borderRadius: radius.md, padding: 13, justifyContent: 'space-between', borderWidth: 1, borderColor: colors.line },
+  tileIcon: { width: 38, height: 38, borderRadius: 13, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.softGreen },
   tileLabel: { fontSize: 15, fontWeight: '600', color: colors.charcoal },
+  sectionHeading: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: -6 },
+  sectionTitle: { fontSize: 17, fontWeight: '700', color: colors.charcoal },
+  sectionAction: { fontSize: 13, fontWeight: '600', color: colors.forest },
+  statusPill: { overflow: 'hidden', paddingHorizontal: 9, paddingVertical: 5, borderRadius: 999, fontSize: 11, fontWeight: '700' },
   btn: { minHeight: 52, borderRadius: radius.md, alignItems: 'center', justifyContent: 'center', paddingHorizontal: space.md },
   btnText: { fontSize: 16, fontWeight: '700' },
 });

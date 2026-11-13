@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <rect width="1024" height="1024" rx="220" fill="#FFFFFF"/>
+  <circle cx="512" cy="378" r="244" fill="#EEF6EF"/>
+  <path d="M512 563V342" fill="none" stroke="#246B4B" stroke-width="30" stroke-linecap="round"/>
+  <path d="M507 424C438 418 382 370 360 300c77-9 150 24 174 89" fill="#3E8C62"/>
+  <path d="M519 385c12-76 74-129 151-135 4 77-37 145-106 164" fill="#246B4B"/>
+  <path d="M512 454c55-49 116-61 175-43-27 69-88 111-167 105" fill="#87B970"/>
+  <path d="M432 572h160" fill="none" stroke="#246B4B" stroke-width="22" stroke-linecap="round"/>
+  <text x="512" y="765" text-anchor="middle" fill="#246B4B" font-family="Arial, sans-serif" font-size="102" font-weight="700" letter-spacing="-3">Kayro</text>
+  <text x="512" y="826" text-anchor="middle" fill="#728078" font-family="Arial, sans-serif" font-size="30" font-weight="700" letter-spacing="13">FARMS</text>
+</svg>

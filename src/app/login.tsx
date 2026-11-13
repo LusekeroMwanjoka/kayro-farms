@@ -4,6 +4,7 @@ import { KeyboardAvoidingView, Platform, StyleSheet, Text, TextInput, View } fro
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useAuth } from '../auth/AuthProvider';
 import { Button } from '../components/ui';
+import { BrandLogo } from '../components/BrandLogo';
 import { colors, radius, space } from '../theme';
 
 export default function Login() {
@@ -15,9 +16,13 @@ export default function Login() {
   return (
     <SafeAreaView style={s.screen}>
       <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined} style={s.wrap}>
-        <Text style={s.brand}>Kayro Farms</Text>
-        <Text style={s.sub}>Sign in to continue</Text>
+        <View style={s.branding}>
+          <BrandLogo />
+          <Text style={s.welcome}>Farm records, made simpler.</Text>
+          <Text style={s.sub}>Sign in to continue</Text>
+        </View>
         <View style={{ height: space.lg }} />
+        <Text style={s.label}>Email address</Text>
         <TextInput
           style={s.input}
           placeholder="Email"
@@ -28,6 +33,7 @@ export default function Login() {
           value={email}
           onChangeText={setEmail}
         />
+        <Text style={s.label}>Password</Text>
         <TextInput
           style={s.input}
           placeholder="Password"
@@ -49,10 +55,12 @@ export default function Login() {
 }
 
 const s = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: colors.cream },
-  wrap: { flex: 1, justifyContent: 'center', padding: space.lg, gap: space.md },
-  brand: { fontSize: 34, fontWeight: '800', color: colors.forest },
+  screen: { flex: 1, backgroundColor: colors.white },
+  wrap: { flex: 1, justifyContent: 'center', padding: space.lg, gap: 10 },
+  branding: { alignItems: 'center', gap: 8, marginBottom: 16 },
+  welcome: { fontSize: 16, fontWeight: '600', color: colors.charcoal, marginTop: 10 },
   sub: { fontSize: 16, color: colors.muted },
+  label: { color: colors.charcoal, fontSize: 13, fontWeight: '600', marginBottom: -5 },
   input: {
     minHeight: 52,
     backgroundColor: colors.white,
